@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block body %}
+
+<div class="container mt-5">
+  <div class="row">
+    <h1 class="text-center none">ToDo List App</h1>
+    <form action="/add" method="POST" class="mt-5">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter The Text"
+        name="data"
+        required
+      />
+      <input type="submit" class="btn btn-primary" value="Add" />
+    </form>
+    <div class="display m-5">
+        {% if count==0 %}
+        <h2>Nothing Here....!</h2>
+        {% endif %}
+        <ol>
+            {% for i in list %}
+            <li>{{i}}</li>
+            {% endfor %}
+        </ol>
+    </div>
+    <form action="/remove" method="POST">
+        {% if message %}
+        <p class="text-danger">{{message}}</p>
+        {%endif%}
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Type The Index No."
+        name="index"
+        required
+      />
+      <input type="submit" class="btn btn-danger" value="Delete" />
+    </form>
+    <form action="/dltAll">
+        <input type="submit" class="btn btn-danger" value="Delete All" /></form>
+  </div>
+</div>
+
+{% endblock %}
